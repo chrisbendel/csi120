@@ -1,0 +1,9 @@
+.navLeft {
+    display: flex;
+    align-items: flex-start !important;
+    justify-content: start !important;
+}
+
+.navLeft > a {
+    margin: 5px;
+}
