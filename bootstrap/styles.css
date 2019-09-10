@@ -7,3 +7,7 @@
 .navLeft > a {
     margin: 5px;
 }
+
+.navLeft > div {
+    margin: 5px;
+}
