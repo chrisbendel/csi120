@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+<!-- CSI 120, Week 6, Lab 5
+    For this lab you are asked to fill in the missing JavaScript
+    code throughout this document as indicated in comments. In each
+    problem you only need to ultimately set a predefined variable to
+    the right value.
+-->
+<html>
+    <head>
+        <title>CSI 120 Lab 5</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!-- Temperature Converter -->
+        <!-- 
+            Formula	
+            (N − 32) × 5/9 = 0°C
+        -->
+        <script>
+            function tempConvert() {
+                let fahrenheit = Number(document.getElementById("numDegrees").value);
+                if (isNaN(fahrenheit)) {
+                    window.alert("Not a number!");
+                    return;
+                }
+
+                let celsius = (fahrenheit - 32) * (5/9);
+
+                document.getElementById("celsiusAnswer").innerHTML = celsius.toPrecision(4) + " Degrees";
+            }
+        </script>
+        
+        <h3>Temperature Converter</h3>
+        <label for="numDegrees">Degrees Fahrenheit</label>
+        <input type="number" id="numDegrees">
+        <div><span id="celsiusAnswer"></span> Celsius</div>
+        <button onclick="tempConvert()">Convert Temperature</button>
+        <hr>
+        
+        <!-- Number Guessing Game -->
+        
+        <script>
+            // Random number between 0 and 99
+            const answer = Math.floor(Math.random() * (100));
+            function guess() {
+                let userGuess = Number(document.getElementById("guessNum").value);
+                if (isNaN(userGuess)) {
+                    window.alert("Not a number!");
+                    return;
+                }
+                let report = "Nothing Yet";
+
+                if (answer < userGuess) {
+                    report = "Guess lower";
+                } else if (answer > userGuess) {
+                    report = "guess higher";
+                } else {
+                    report = "Correct";
+                }
+
+                // if (answer == userGuess) {
+                //     alert("Correct");
+                // } else if (answer < userGuess) {
+                //     report = "Guess lower";
+                // } else if (answer > userGuess) {
+                //     report = "Guess higher";
+                // }
+
+
+                // YOU FILL IN HERE
+                // Report back to the user by filling in whether
+                // the guess is too high, too low, or correct
+                // in the variable report.
+                
+                document.getElementById("guessResponse").innerHTML = report;
+            }
+        </script>
+        
+        <h3>Number Guessing Game</h3>
+        <label for="guessNum">Your Guess</label>
+        <input type="number" id="guessNum">
+        <div><span id="guessResponse"></span></div>
+        <button onclick="guess()">Guess</button>
+        <hr>
+        
+        <!-- Multiplication Table -->
+        
+        <script>
+            function generateMultiplicationTable() {
+                let tableMax = Number(document.getElementById("tableMax").value);
+                if (isNaN(tableMax)) {
+                    window.alert("Not a number!");
+                    return;
+                }
+
+                let tableHTML = "<table>";
+                for (let i = 1; i <= tableMax; i++) {
+                    tableHTML += '<tr></tr>';
+                    for (let j = 1; j <= tableMax; j++) {
+                        tableHTML += `<td>${i * j}</td>`;
+                    }
+                }
+            
+            
+                // YOU FILL IN HERE
+                // Use an outter loop and an inner loop.
+                // add a row by using tableHTML += "<tr>";
+                // and a cell using tableHTML += "<td>";
+                // remember to also close all of your tags
+                tableHTML += "</table>";
+                
+                document.getElementById("multiplicationTable").innerHTML = tableHTML;
+            }
+        </script>
+        
+        <h3>Multiplication Table</h3>
+        <label for="tableMax">Table Up To</label>
+        <input type="number" id="tableMax">
+        <div id="multiplicationTable"></div>
+        <button onclick="generateMultiplicationTable()">Generate Table</button>
+        <hr>
+        
+    </body>
+</html>
