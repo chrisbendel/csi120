@@ -14,7 +14,21 @@
 
 <body>
     <div id="container">
-        <div>My secret list of things to do</div>
+        <div class="addTodo">
+            <label for="newTodo">
+                Add new todo: 
+                <input type="text" id="newTodo"/>
+            </label>
+
+            <label for="dueDate">
+                When is it due: 
+                <input type="date" id="dueDate"/>
+            </label>
+
+            <button onclick="addTodo()">Add Todo</button>
+        </div>
+
+        <ul id="todo-list"></ul>
     </div>
 </body>
 </html>
