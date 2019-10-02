@@ -1,41 +1,29 @@
 let todoList = [];
+let counter = 0;
 
 let today = new Date();
 
-class Todo {
-    completed;
-    dueDate;
-    text;
-    
-    constructor(completed, duedate, text) {
-        this.completed = completed;
-        this.duedate = duedate;
-        this.text = text;
-    }
-    
-}
-
 todoList.push({
     completed: false,
-    dueDate: today.setDate(today.getDate() + 6),
+    dueDate: new Date().toUTCString(),
     text: "Make this app better"
 });
 
 todoList.push({
     completed: true,
-    dueDate: today.setDate(today.getDate() + 2),
+    dueDate: new Date().toUTCString(),
     text: "Sleep"
 });
 
 todoList.push({
     completed: true,
-    dueDate: today.setDate(today.getDate() + 3),
+    dueDate: new Date().toUTCString(),
     text: "Eat"
 });
 
 todoList.push({
     completed: false,
-    dueDate: today.setDate(today.getDate() + 6),
+    dueDate: new Date().toUTCString(),
     text: "Drink"
 });
 
@@ -45,27 +33,58 @@ function addTodo() {
 
     let dueDateField = document.getElementById('dueDate');
     const dueDate = dueDateField.value;
-
-    todoList.push(new Todo(false, dueDate, newTodo));
-
+    
     todoList.push({
         completed: false,
         dueDate: dueDate,
-        text: newTodo,
+        text: newTodo
     });
 
     dueDateField.value = null;
     textField.value = null;
 
-    console.log(todoList);
+    renderTodos();
+}
+
+function reorderTodo() {
+
+}
+
+function setCompleted() {
+  // TODO change the object to completed
+
+}
+
+function editTodo() {
+
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    renderTodos();
+});
+
+function renderTodos() {
     const listElement = document.getElementById("todo-list");
+    while(listElement.firstChild){
+        listElement.removeChild(listElement.firstChild);
+    }
+
     todoList.forEach(todoItem => {
         let item = document.createElement("li");
-        let text = document.createTextNode(`<strike>${todoItem.text}</strike>`);
-        item.appendChild(text);
+        if (todoItem.completed) {
+            item.innerHTML = `<strike>${todoItem.text}</strike>`;
+        } else {
+            item.innerHTML = 
+            `<span>${todoItem.text} </span>
+            <br/> 
+            <span> ${todoItem.dueDate} </span>`;
+        }
+
+        item.addEventListener("click", () => {
+            todoItem.completed = !todoItem.completed;
+            renderTodos();
+        });
+
         listElement.appendChild(item);
     });
-});
+}
